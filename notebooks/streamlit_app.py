@@ -1,6 +1,8 @@
+import tensorflow as tf
 import streamlit as st
-from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing.image import load_img, img_to_array
+from tensorflow.keras.models import load_model 
+from tensorflow.keras.preprocessing.image import load_img, img_to_array 
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import numpy as np
 import os
 
@@ -14,7 +16,6 @@ else:
 model = load_model('food_classifier_model.keras')
 
 # Get class labels
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
 train_datagen = ImageDataGenerator(rescale=1./255)
 train_generator = train_datagen.flow_from_directory(
     '../data/train', target_size=(224, 224), batch_size=32, class_mode='categorical'
