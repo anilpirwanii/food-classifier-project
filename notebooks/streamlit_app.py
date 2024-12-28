@@ -4,6 +4,12 @@ from tensorflow.keras.preprocessing.image import load_img, img_to_array
 import numpy as np
 import os
 
+if not os.path.exists('food_classifier_model.keras'):
+    print("Model file not found in current directory")
+else:
+    print("Model file found!")
+
+
 # Load the model
 model = load_model('food_classifier_model.keras')
 
