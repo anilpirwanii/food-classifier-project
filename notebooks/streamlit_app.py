@@ -6,11 +6,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import numpy as np
 import os
 
-if not os.path.exists('food_classifier_model.keras'):
-    print("Model file not found in current directory")
-else:
-    print("Model file found!")
-
+port = int(os.environ.get("PORT", 8501))  # Default to 8501 for local testing
 
 # Load the model
 model = load_model('food_classifier_model.keras')
