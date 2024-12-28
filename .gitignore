@@ -2,10 +2,6 @@
 data/
 *.zip
 
-# Ignore model files (optional, if you're not sharing them on GitHub)
-*.h5
-*.keras
-
 # Ignore Python virtual environment folder
 food-env/
 
