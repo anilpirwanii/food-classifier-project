@@ -62,7 +62,7 @@ print("Number of Test Classes:", len(test_generator.class_indices))
 
 history = model.fit(
     train_generator,
-    epochs=5,  # Start with a small number; we can increase later
+    epochs=10,  # Start with a small number; we can increase later
     validation_data=test_generator
 )
 
