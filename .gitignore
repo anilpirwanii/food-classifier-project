@@ -1,0 +1,19 @@
+# Ignore the dataset and its unzipped content
+data/
+*.zip
+
+# Ignore model files (optional, if you're not sharing them on GitHub)
+*.h5
+*.keras
+
+# Ignore Python virtual environment folder
+food-env/
+
+# Ignore compiled Python files
+__pycache__/
+
+# Ignore temporary files
+*.log
+*.tmp
+temp.jpg
+
