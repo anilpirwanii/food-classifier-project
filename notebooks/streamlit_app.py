@@ -3,13 +3,17 @@ import streamlit as st
 from tensorflow.keras.models import load_model 
 from tensorflow.keras.preprocessing.image import load_img, img_to_array 
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
+import streamlit.web.server.server
 import numpy as np
 import os
 
 port = int(os.environ.get("PORT", 8501))  # Default to 8501 for local testing
 
+streamlit.web.server.server._set_option("server.port", port)
+streamlit.web.server.server._set_option("server.address", "0.0.0.0")
+
 # Load the model
-model = load_model('food_classifier_model.keras')
+model = load_model('./notebooks/food_classifier_model.keras')
 
 # Get class labels
 train_datagen = ImageDataGenerator(rescale=1./255)
