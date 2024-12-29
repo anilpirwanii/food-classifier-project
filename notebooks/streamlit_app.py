@@ -15,7 +15,7 @@ model = load_model('./notebooks/food_classifier_model.keras')
 # Get class labels
 train_datagen = ImageDataGenerator(rescale=1./255)
 train_generator = train_datagen.flow_from_directory(
-    '../data/train', target_size=(224, 224), batch_size=32, class_mode='categorical'
+    'data/train', target_size=(224, 224), batch_size=32, class_mode='categorical'
 )
 class_indices = train_generator.class_indices
 class_labels = {v: k for k, v in class_indices.items()}
