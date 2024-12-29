@@ -7,10 +7,7 @@ import streamlit.web.server.server
 import numpy as np
 import os
 
-port = int(os.environ.get("PORT", 8501))  # Default to 8501 for local testing
-
-streamlit.web.server.server._set_option("server.port", port)
-streamlit.web.server.server._set_option("server.address", "0.0.0.0")
+print("PORT:", os.environ.get("PORT", "Default: 8501"))
 
 # Load the model
 model = load_model('./notebooks/food_classifier_model.keras')
