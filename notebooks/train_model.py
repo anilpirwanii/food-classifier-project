@@ -1,4 +1,5 @@
 import tensorflow as tf
+import json
 from tensorflow.keras.applications import MobileNetV2
 from tensorflow.keras import layers, models
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
@@ -32,6 +33,16 @@ base_model = MobileNetV2(
     include_top=False,         # Exclude the top (classification) layer
     weights='imagenet'         # Pre-trained on ImageNet
 )
+
+# Get the class labels
+class_indices = train_generator.class_indices
+class_labels = {v: k for k, v in class_indices.items()}  # Reverse mapping
+
+# Save the class labels as a JSON file
+with open("class_labels.json", "w") as f:
+    json.dump(class_labels, f)
+
+print("Class labels saved to class_labels.json")
 
 # Freeze the base model layers (no training for these layers)
 base_model.trainable = False

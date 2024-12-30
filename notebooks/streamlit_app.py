@@ -5,21 +5,17 @@ from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import streamlit.web.server.server
 import numpy as np
+import json 
 import os
 
 # Load the model
 model_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'food_classifier_model.keras')
 model = load_model(model_path)
 
-# Get class labels
-train_datagen = ImageDataGenerator(rescale=1./255)
-train_data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../data/train')
-train_generator = train_datagen.flow_from_directory(
-    train_data_path, target_size=(224, 224), batch_size=32, class_mode='categorical'
-)
-
-class_indices = train_generator.class_indices
-class_labels = {v: k for k, v in class_indices.items()}
+# Load class labels from JSON file
+class_labels_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'class_labels.json')
+with open(class_labels_path, 'r') as f:
+    class_labels = json.load(f)
 
 # Streamlit UI
 st.title("Food Image Classifier")
