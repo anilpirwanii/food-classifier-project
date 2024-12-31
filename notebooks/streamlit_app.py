@@ -10,7 +10,7 @@ import os
 import hashlib
 
 # Load the model
-model_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'food_classifier_model.keras')
+model_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'best_food_classifier_model.keras')
 model = load_model(model_path)
 
 # Calculate and display file size

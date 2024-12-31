@@ -1,6 +1,7 @@
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 import numpy as np
+import json
 
 # Load the saved model
 model = load_model('food_classifier_model.keras')
