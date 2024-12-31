@@ -50,8 +50,16 @@ if uploaded_file is not None:
     predictions = model.predict(img_array)
     predicted_class = np.argmax(predictions)
     predicted_label = class_labels[str(predicted_class)]
+    confidence = predictions[0][predicted_class]
 
-    # Display results
-    st.image(temp_path, caption=f"Uploaded Image", use_column_width=True)
-    st.write(f"### Predicted Category: {predicted_label}")
-    st.write(f"### Prediction Confidence: {predictions[0][predicted_class]:.2f}")
+    # Set a confidence threshold
+    confidence_threshold = 0.5
+    if confidence < confidence_threshold:
+        st.write("### This does not look like a food item.")
+    else:
+        predicted_label = class_labels[str(predicted_class)]
+        # Display results
+        st.image(temp_path, caption="Uploaded Image", use_column_width=True)
+        st.write(f"### Predicted Category: {predicted_label}")
+        st.write(f"### Prediction Confidence: {confidence:.2f}")
+
