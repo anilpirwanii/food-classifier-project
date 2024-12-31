@@ -9,7 +9,16 @@ train_dir = '../data/train'
 test_dir = '../data/test'
 
 # Data generators
-train_datagen = ImageDataGenerator(rescale=1./255)  # Normalize pixel values
+train_datagen = ImageDataGenerator(
+    rescale=1./255,
+    rotation_range=20,      # Rotate images up to 20 degrees
+    width_shift_range=0.2,  # Shift the image width-wise up to 20%
+    height_shift_range=0.2, # Shift the image height-wise up to 20%
+    shear_range=0.2,        # Shear the image
+    zoom_range=0.2,         # Zoom in/out
+    horizontal_flip=True,   # Flip the image horizontally
+    fill_mode='nearest'     # Fill missing pixels after transformations
+)
 test_datagen = ImageDataGenerator(rescale=1./255)
 
 # Load images
@@ -71,11 +80,36 @@ print("Test Classes:", test_generator.class_indices)
 print("Number of Test Classes:", len(test_generator.class_indices))
 
 
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau
+
+# Define callbacks
+early_stopping = EarlyStopping(
+    monitor='val_loss', 
+    patience=3, 
+    restore_best_weights=True
+)
+
+model_checkpoint = ModelCheckpoint(
+    'best_food_classifier_model.keras', 
+    save_best_only=True, 
+    monitor='val_loss'
+)
+
+reduce_lr = ReduceLROnPlateau(
+    monitor='val_loss', 
+    factor=0.5, 
+    patience=2, 
+    min_lr=1e-6
+)
+
+# Train the model with callbacks
 history = model.fit(
     train_generator,
-    epochs=10,  # Start with a small number; we can increase later
-    validation_data=test_generator
+    epochs=5,
+    validation_data=test_generator,
+    callbacks=[early_stopping, model_checkpoint, reduce_lr]  # Add callbacks here
 )
+
 
 model.save('food_classifier_model.keras')
 
