@@ -7,10 +7,23 @@ import streamlit.web.server.server
 import numpy as np
 import json 
 import os
+import hashlib
 
 # Load the model
 model_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'food_classifier_model.keras')
 model = load_model(model_path)
+
+# Calculate and display file size
+file_size = os.path.getsize(model_path)
+st.write("Deployed model file size (bytes):", file_size)
+
+# Calculate and display MD5 checksum
+def calculate_md5(file_path):
+    with open(file_path, 'rb') as f:
+        return hashlib.md5(f.read()).hexdigest()
+
+md5_checksum = calculate_md5(model_path)
+st.write("Deployed model MD5 checksum:", md5_checksum)
 
 # Load class labels from JSON file
 class_labels_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'class_labels.json')
