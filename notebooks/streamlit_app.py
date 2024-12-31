@@ -17,6 +17,7 @@ class_labels_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'cl
 with open(class_labels_path, 'r') as f:
     class_labels = json.load(f)
 
+
 # Streamlit UI
 st.title("Food Image Classifier")
 st.write("Upload an image of food, and the model will predict its category!")
@@ -34,10 +35,21 @@ if uploaded_file is not None:
     img_array = img_to_array(img) / 255.0
     img_array = np.expand_dims(img_array, axis=0)
 
+    # # Debugging: Print the loaded class labels
+    # st.write("Loaded Class Labels:", class_labels)
+
+    # # Debugging: Print the model's predictions
+    # predictions = model.predict(img_array)
+    # st.write("Raw Predictions (Probabilities):", predictions)
+
+    # # Debugging: Print the predicted class index
+    # predicted_class = np.argmax(predictions)
+    # st.write("Predicted Class Index:", predicted_class)
+
     # Make a prediction
     predictions = model.predict(img_array)
     predicted_class = np.argmax(predictions)
-    predicted_label = class_labels[predicted_class]
+    predicted_label = class_labels[str(predicted_class)]
 
     # Display results
     st.image(temp_path, caption=f"Uploaded Image", use_column_width=True)
