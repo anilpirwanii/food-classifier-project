@@ -2,6 +2,7 @@ import tensorflow as tf
 import streamlit as st
 from tensorflow.keras.models import load_model 
 from tensorflow.keras.preprocessing.image import load_img, img_to_array 
+import requests
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import streamlit.web.server.server
 import numpy as np
@@ -10,8 +11,16 @@ import os
 import hashlib
 
 # Load the model
-model_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'best_food_classifier_model.keras')
-model = load_model(model_path)
+model_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'food_classifier_model.keras')
+try:
+    model = load_model(model_path)
+    print("Model loaded successfully!")
+except Exception as e:
+    print(f"Failed to load the model: {e}")
+    os.remove(model_path)  # Delete the corrupted file
+    st.error("Model file is corrupted. Please restart the app to download again.")
+    exit()
+
 
 # Calculate and display file size
 file_size = os.path.getsize(model_path)
@@ -66,13 +75,16 @@ if uploaded_file is not None:
     confidence = predictions[0][predicted_class]
 
     # Set a confidence threshold
-    confidence_threshold = 0.5
+    confidence_threshold = 0.8
     if confidence < confidence_threshold:
-        st.write("### This does not look like a food item.")
+        st.write("### This image does not resemble any of the following food categories:")
+        for category in class_labels.values():
+            st.write(f"- {category}")
     else:
         predicted_label = class_labels[str(predicted_class)]
         # Display results
         st.image(temp_path, caption="Uploaded Image", use_column_width=True)
         st.write(f"### Predicted Category: {predicted_label}")
         st.write(f"### Prediction Confidence: {confidence:.2f}")
+
 

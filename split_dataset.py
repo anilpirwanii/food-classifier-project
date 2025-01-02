@@ -1,11 +1,12 @@
 import os
 import shutil
 from sklearn.model_selection import train_test_split
+from collections import Counter
 
 # Paths
-data_dir = 'data/images'  # Source images folder
-train_dir = 'data/train'  # Train destination
-test_dir = 'data/test'    # Test destination
+data_dir = 'food-101/images'  # Adjusted to point to the 'images' folder
+train_dir = 'food-101/train'  # Train destination
+test_dir = 'food-101/test'    # Test destination
 
 # Get all class names (subdirectories in images/)
 classes = [cls for cls in os.listdir(data_dir) if os.path.isdir(os.path.join(data_dir, cls))]
@@ -18,6 +19,7 @@ for cls in classes:
 
     # Get all image files for the current class
     images = os.listdir(os.path.join(data_dir, cls))
+    print(f"{cls}: {len(images)} images")
     images = [os.path.join(data_dir, cls, img) for img in images]
 
     # Split into 80% train and 20% test

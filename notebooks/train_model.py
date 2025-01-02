@@ -5,8 +5,8 @@ from tensorflow.keras import layers, models
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 # Paths to train and test directories
-train_dir = '../data/train'
-test_dir = '../data/test'
+train_dir = '../../food-101/train'
+test_dir = '../../food-101/test'
 
 # Data generators
 train_datagen = ImageDataGenerator(
@@ -17,8 +17,10 @@ train_datagen = ImageDataGenerator(
     shear_range=0.2,        # Shear the image
     zoom_range=0.2,         # Zoom in/out
     horizontal_flip=True,   # Flip the image horizontally
+    brightness_range=[0.8, 1.2],  # Adjust brightness
     fill_mode='nearest'     # Fill missing pixels after transformations
 )
+
 test_datagen = ImageDataGenerator(rescale=1./255)
 
 # Load images
@@ -53,8 +55,10 @@ with open("class_labels.json", "w") as f:
 
 print("Class labels saved to class_labels.json")
 
-# Freeze the base model layers (no training for these layers)
-base_model.trainable = False
+# Unfreeze specific layers of MobileNetV2 for fine-tuning
+base_model.trainable = True
+for layer in base_model.layers[:150]:  # Freeze the first 150 layers
+    layer.trainable = False
 
 # Build the model
 model = models.Sequential([
@@ -65,9 +69,9 @@ model = models.Sequential([
     layers.Dense(train_generator.num_classes, activation='softmax') 
 ])
 
-# Compile the model
+# Compile with a lower learning rate for fine-tuning
 model.compile(
-    optimizer='adam',
+    optimizer=tf.keras.optimizers.Adam(learning_rate=3e-4),
     loss='categorical_crossentropy',
     metrics=['accuracy']
 )
@@ -102,12 +106,12 @@ reduce_lr = ReduceLROnPlateau(
     min_lr=1e-6
 )
 
-# Train the model with callbacks
+# Increase epochs and use callbacks
 history = model.fit(
     train_generator,
-    epochs=5,
+    epochs=10,  # Fewer epochs
     validation_data=test_generator,
-    callbacks=[early_stopping, model_checkpoint, reduce_lr]  # Add callbacks here
+    callbacks=[early_stopping, model_checkpoint, reduce_lr]
 )
 
 
