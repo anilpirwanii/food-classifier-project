@@ -1,13 +1,9 @@
 # Ignore the dataset and its unzipped content
-food-101/
 # *.zip
 
-# Ignore Python virtual environment folder
-food-env/
 
 # # Ignore compiled Python files
 # __pycache__/
-*.keras
 
 # # Ignore temporary files
 # *.log
