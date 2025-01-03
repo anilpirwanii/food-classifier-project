@@ -34,9 +34,58 @@ except Exception as e:
 
 
 # Streamlit UI
-st.title("Food Image Classifier")
-st.write("Upload an image of food, and the model will predict its category!")
-st.header("Welcome to the Food Image Classifier")
+# Add title and subtitle
+st.markdown(
+    """
+    <div style="text-align: center; margin-bottom: 20px;">
+        <h1 style="font-size: 3rem; font-weight: bold; margin-bottom: 10px; color: #333333;">
+            Welcome to Snack Scanner
+        </h1>
+        <h2 style="font-size: 1.5rem; font-weight: normal; color: #666666;">
+            Your AI-Powered Food Recognition Companion
+        </h2>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+st.markdown(
+    """
+    <style>
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333333;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666666;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .contact-card {
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            border: 1px solid #f1f1f1;
+            margin-top: 20px;
+        }
+        .contact-card a {
+            text-decoration: none;
+            color: #0073e6;
+        }
+        .contact-card a:hover {
+            color: #005bb5;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
 uploaded_file = st.file_uploader("Choose a food image...", type=["jpg", "jpeg", "png"])
 
@@ -118,10 +167,12 @@ if uploaded_file is not None:
         pass
 
 # Add contact information
+# Add contact information
 st.markdown(
     """
     <hr style="border:1px solid #f1f1f1;">
     <div style="text-align: center; padding: 10px; font-size: 16px; font-family: Arial, sans-serif; background-color: #f9f9f9; border-radius: 10px;">
+        <p>🌟 Powered by the <a href="https://github.com/anilpirwanii/food-classifier-project" target="_blank" style="text-decoration: none; color: #0073e6;"><b>Machine Learning-Based Snack Scanner</b></a></p>
         <p>🍴 Created by <b>Anil Kumar</b></p>
         <p>📧 <a href="mailto:aka158@sfu.ca" style="text-decoration: none; color: #0073e6;">aka158@sfu.ca</a></p>
         <p>🌐 
@@ -137,6 +188,9 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
+
+
+
 
 
 
