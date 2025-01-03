@@ -129,7 +129,7 @@ st.markdown(
                 <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/github.svg" alt="GitHub" style="width:20px; height:20px; vertical-align: middle;"> GitHub
             </a> 
             &nbsp;|&nbsp; 
-            <a href="linkedin.com/in/anilpirwanii/" target="_blank" style="text-decoration: none; color: #0073e6;">
+            <a href="https://linkedin.com/in/anilpirwanii/" target="_blank" style="text-decoration: none; color: #0073e6;">
                 <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/linkedin.svg" alt="LinkedIn" style="width:20px; height:20px; vertical-align: middle;"> LinkedIn
             </a>
         </p>
