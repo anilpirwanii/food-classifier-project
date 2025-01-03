@@ -116,12 +116,35 @@ if uploaded_file is not None:
 
     # Set a confidence threshold
     confidence_threshold = 0.7
+    # When the model cannot classify the image
     if confidence < confidence_threshold:
-        st.write("### ❌ This image does not resemble any of the following food categories:")
-        for category in class_labels.values():
-            st.write(f"- 🥗 {category}")
-    else:
-        st.image(temp_path, caption="Uploaded Image", use_container_width=True)
+        st.markdown(
+            """
+            <div style="border: 1px solid #f1f1f1; border-radius: 10px; padding: 20px; background-color: #f9f9f9; text-align: center; font-family: Arial, sans-serif;">
+                <h3 style="color: #FF4B4B;">❌ Sorry, we couldn't confidently classify this image!</h3>
+                <p style="font-size: 16px; color: #333;">This image does not resemble any of the following food categories:</p>
+                <ul style="list-style: none; padding: 0; text-align: left; display: inline-block;">
+                    <li>🥗 Caesar Salad</li>
+                    <li>🍗 Chicken Wings</li>
+                    <li>🍫🍰 Chocolate Cake</li>
+                    <li>🐟🍟 Fish and Chips</li>
+                    <li>🍟 French Fries</li>
+                    <li>🌭 Hot Dog</li>
+                    <li>🍦 Ice Cream</li>
+                    <li>🍕 Pizza</li>
+                    <li>🍟 Poutine</li>
+                    <li>🍜 Ramen</li>
+                    <li>🥟 Samosa</li>
+                    <li>🥩 Steak</li>
+                    <li>🍣 Sushi</li>
+                    <li>🌮 Tacos</li>
+                    <li>🧇 Waffles</li>
+                </ul>
+                <p style="font-size: 16px; color: #333; margin-top: 20px;">🔄 Try uploading another image and give it another shot!</p>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
     emoji_dict = {
     "caesar_salad": "🥗",
@@ -156,9 +179,6 @@ if uploaded_file is not None:
         st.warning(
             "The model could not confidently classify this image as one of the categories. Try another image!"
         )
-
-
-
 
     # Clean up temporary file
     try:
