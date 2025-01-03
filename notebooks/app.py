@@ -73,11 +73,42 @@ if uploaded_file is not None:
             st.write(f"- 🥗 {category}")
     else:
         st.image(temp_path, caption="Uploaded Image", use_container_width=True)
-        st.success(f"### ✅ Predicted Category: {predicted_label}")
-        st.info(f"### Confidence Level: {confidence:.2f}")
+
+    emoji_dict = {
+    "caesar_salad": "🥗",
+    "chicken_wings": "🍗",
+    "chocolate_cake": "🍫🍰",
+    "fish_and_chips": "🐟🍟",
+    "french_fries": "🍟",
+    "hot_dog": "🌭",
+    "ice_cream": "🍦",
+    "pizza": "🍕",
+    "poutine": "🍛",
+    "ramen": "🍜",
+    "samosa": "🥟",
+    "steak": "🥩",
+    "sushi": "🍣",
+    "tacos": "🌮",
+    "waffles": "🧇",
+}
 
     if confidence >= confidence_threshold:
-        st.balloons()
+        emoji = emoji_dict.get(predicted_label, "🍴")  # Default emoji if category not found
+        st.markdown(
+            f"""
+            <div style="background-color: #f9f9f9; padding: 20px; border-radius: 10px; text-align: center; border: 2px solid #eaeaea;">
+                <h1 style="color: #4CAF50;">{emoji} {predicted_label.replace("_", " ").title()}</h1>
+                <p style="font-size: 18px;">Prediction Accuracy: <b>{confidence * 100:.2f}%</b></p>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    else:
+        st.warning(
+            "The model could not confidently classify this image as one of the categories. Try another image!"
+        )
+
+
 
 
     # Clean up temporary file
@@ -86,12 +117,26 @@ if uploaded_file is not None:
     except Exception as e:
         pass
 
+# Add contact information
 st.markdown(
     """
-    <hr style="border:1px solid gray">
-    <small>Created by Anil Kumar (linkedin.com/in/anilpirwanii/)</small>
-    """, 
-    unsafe_allow_html=True
+    <hr style="border:1px solid #f1f1f1;">
+    <div style="text-align: center; padding: 10px; font-size: 16px; font-family: Arial, sans-serif; background-color: #f9f9f9; border-radius: 10px;">
+        <p>🍴 Created by <b>Anil Kumar</b></p>
+        <p>📧 <a href="mailto:aka158@sfu.ca" style="text-decoration: none; color: #0073e6;">aka158@sfu.ca</a></p>
+        <p>🌐 
+            <a href="https://github.com/anilpirwanii/" target="_blank" style="text-decoration: none; color: #0073e6;">
+                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/github.svg" alt="GitHub" style="width:20px; height:20px; vertical-align: middle;"> GitHub
+            </a> 
+            &nbsp;|&nbsp; 
+            <a href="linkedin.com/in/anilpirwanii/" target="_blank" style="text-decoration: none; color: #0073e6;">
+                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/linkedin.svg" alt="LinkedIn" style="width:20px; height:20px; vertical-align: middle;"> LinkedIn
+            </a>
+        </p>
+    </div>
+    """,
+    unsafe_allow_html=True,
 )
+
 
 
