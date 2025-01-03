@@ -57,17 +57,6 @@ if uploaded_file is not None:
     img_array = img_to_array(img) / 255.0
     img_array = np.expand_dims(img_array, axis=0)
 
-    # # Debugging: Print the loaded class labels
-    # st.write("Loaded Class Labels:", class_labels)
-
-    # # Debugging: Print the model's predictions
-    # predictions = model.predict(img_array)
-    # st.write("Raw Predictions (Probabilities):", predictions)
-
-    # # Debugging: Print the predicted class index
-    # predicted_class = np.argmax(predictions)
-    # st.write("Predicted Class Index:", predicted_class)
-
     # Make a prediction
     predictions = model.predict(img_array)
     predicted_class = np.argmax(predictions)
