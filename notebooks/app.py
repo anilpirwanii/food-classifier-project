@@ -8,7 +8,11 @@ import streamlit.web.server.server
 import numpy as np
 import json 
 import os
-import hashlib
+import warnings
+
+# Suppress TensorFlow logs and warnings
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # Suppress TensorFlow logging
+warnings.filterwarnings('ignore')
 
 # Load the model
 model_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'food_classifier_model.keras')
@@ -16,28 +20,17 @@ try:
     model = load_model(model_path)
     print("Model loaded successfully!")
 except Exception as e:
-    print(f"Failed to load the model: {e}")
-    os.remove(model_path)  # Delete the corrupted file
-    st.error("Model file is corrupted. Please restart the app to download again.")
-    exit()
-
-
-# Calculate and display file size
-file_size = os.path.getsize(model_path)
-st.write("Deployed model file size (bytes):", file_size)
-
-# Calculate and display MD5 checksum
-def calculate_md5(file_path):
-    with open(file_path, 'rb') as f:
-        return hashlib.md5(f.read()).hexdigest()
-
-md5_checksum = calculate_md5(model_path)
-st.write("Deployed model MD5 checksum:", md5_checksum)
+    st.error("Failed to load the model. Please check the model file and try again.")
+    st.stop()
 
 # Load class labels from JSON file
 class_labels_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'class_labels.json')
-with open(class_labels_path, 'r') as f:
-    class_labels = json.load(f)
+try:
+    with open(class_labels_path, 'r') as f:
+        class_labels = json.load(f)
+except Exception as e:
+    st.error("Failed to load class labels. Please check the JSON file.")
+    st.stop()
 
 
 # Streamlit UI
@@ -49,8 +42,12 @@ uploaded_file = st.file_uploader("Choose a food image...", type=["jpg", "jpeg", 
 if uploaded_file is not None:
     # Save the uploaded file temporarily
     temp_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'temp.jpg')
-    with open(temp_path, "wb") as f:
-        f.write(uploaded_file.getbuffer())
+    try:
+        with open(temp_path, "wb") as f:
+            f.write(uploaded_file.getbuffer())
+    except Exception as e:
+        st.error("Failed to save the uploaded file. Please try again.")
+        st.stop()
 
     # Preprocess the image
     img = load_img(temp_path, target_size=(224, 224))
@@ -58,10 +55,14 @@ if uploaded_file is not None:
     img_array = np.expand_dims(img_array, axis=0)
 
     # Make a prediction
-    predictions = model.predict(img_array)
-    predicted_class = np.argmax(predictions)
-    predicted_label = class_labels[str(predicted_class)]
-    confidence = predictions[0][predicted_class]
+    try:
+        predictions = model.predict(img_array)
+        predicted_class = np.argmax(predictions)
+        confidence = predictions[0][predicted_class]
+        predicted_label = class_labels[str(predicted_class)]
+    except Exception as e:
+        st.error("Prediction failed. Please check the model or input image.")
+        st.stop()
 
     # Set a confidence threshold
     confidence_threshold = 0.8
@@ -72,8 +73,14 @@ if uploaded_file is not None:
     else:
         predicted_label = class_labels[str(predicted_class)]
         # Display results
-        st.image(temp_path, caption="Uploaded Image", use_column_width=True)
+        st.image(temp_path, caption="Uploaded Image", use_container_width=True)
         st.write(f"### Predicted Category: {predicted_label}")
         st.write(f"### Prediction Confidence: {confidence:.2f}")
+
+    # Clean up temporary file
+    try:
+        os.remove(temp_path)
+    except Exception as e:
+        pass
 
 
