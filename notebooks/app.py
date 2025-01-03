@@ -36,6 +36,7 @@ except Exception as e:
 # Streamlit UI
 st.title("Food Image Classifier")
 st.write("Upload an image of food, and the model will predict its category!")
+st.header("Welcome to the Food Image Classifier")
 
 uploaded_file = st.file_uploader("Choose a food image...", type=["jpg", "jpeg", "png"])
 
@@ -65,22 +66,32 @@ if uploaded_file is not None:
         st.stop()
 
     # Set a confidence threshold
-    confidence_threshold = 0.8
+    confidence_threshold = 0.7
     if confidence < confidence_threshold:
-        st.write("### This image does not resemble any of the following food categories:")
+        st.write("### ❌ This image does not resemble any of the following food categories:")
         for category in class_labels.values():
-            st.write(f"- {category}")
+            st.write(f"- 🥗 {category}")
     else:
-        predicted_label = class_labels[str(predicted_class)]
-        # Display results
         st.image(temp_path, caption="Uploaded Image", use_container_width=True)
-        st.write(f"### Predicted Category: {predicted_label}")
-        st.write(f"### Prediction Confidence: {confidence:.2f}")
+        st.success(f"### ✅ Predicted Category: {predicted_label}")
+        st.info(f"### Confidence Level: {confidence:.2f}")
+
+    if confidence >= confidence_threshold:
+        st.balloons()
+
 
     # Clean up temporary file
     try:
         os.remove(temp_path)
     except Exception as e:
         pass
+
+st.markdown(
+    """
+    <hr style="border:1px solid gray">
+    <small>Created by Anil Kumar (linkedin.com/in/anilpirwanii/)</small>
+    """, 
+    unsafe_allow_html=True
+)
 
 
