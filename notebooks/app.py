@@ -126,13 +126,13 @@ if uploaded_file is not None:
                 <ul style="list-style: none; padding: 0; text-align: left; display: inline-block;">
                     <li>🥗 Caesar Salad</li>
                     <li>🍗 Chicken Wings</li>
-                    <li>🍫🍰 Chocolate Cake</li>
-                    <li>🐟🍟 Fish and Chips</li>
+                    <li>🍰 Chocolate Cake</li>
+                    <li>🐟 Fish and Chips</li>
                     <li>🍟 French Fries</li>
                     <li>🌭 Hot Dog</li>
                     <li>🍦 Ice Cream</li>
                     <li>🍕 Pizza</li>
-                    <li>🍟 Poutine</li>
+                    <li>🍁🍟 Poutine</li>
                     <li>🍜 Ramen</li>
                     <li>🥟 Samosa</li>
                     <li>🥩 Steak</li>
@@ -140,22 +140,29 @@ if uploaded_file is not None:
                     <li>🌮 Tacos</li>
                     <li>🧇 Waffles</li>
                 </ul>
+                <p style="font-size: 16px; color: #333; margin-top: 20px;">📸 To improve accuracy:</p>
+                <ul style="list-style: disc; padding: 0 20px; text-align: left; display: inline-block;">
+                    <li>Ensure the image contains only one food item.</li>
+                    <li>Crop out the background to focus on the food.</li>
+                    <li>Avoid including multiple food items in one image.</li>
+                </ul>
                 <p style="font-size: 16px; color: #333; margin-top: 20px;">🔄 Try uploading another image and give it another shot!</p>
             </div>
             """,
             unsafe_allow_html=True,
         )
 
+
     emoji_dict = {
     "caesar_salad": "🥗",
     "chicken_wings": "🍗",
-    "chocolate_cake": "🍫🍰",
-    "fish_and_chips": "🐟🍟",
+    "chocolate_cake": "🍰",
+    "fish_and_chips": "🐟",
     "french_fries": "🍟",
     "hot_dog": "🌭",
     "ice_cream": "🍦",
     "pizza": "🍕",
-    "poutine": "🍛",
+    "poutine": "🍁🍟",
     "ramen": "🍜",
     "samosa": "🥟",
     "steak": "🥩",
@@ -187,20 +194,19 @@ if uploaded_file is not None:
         pass
 
 # Add contact information
-# Add contact information
 st.markdown(
     """
-    <hr style="border:1px solid #f1f1f1;">
-    <div style="text-align: center; padding: 10px; font-size: 16px; font-family: Arial, sans-serif; background-color: #f9f9f9; border-radius: 10px;">
-        <p>🌟 Powered by the <a href="https://github.com/anilpirwanii/food-classifier-project" target="_blank" style="text-decoration: none; color: #0073e6;"><b>Machine Learning-Based Snack Scanner</b></a></p>
-        <p>🍴 Created by <b>Anil Kumar</b></p>
-        <p>📧 <a href="mailto:aka158@sfu.ca" style="text-decoration: none; color: #0073e6;">aka158@sfu.ca</a></p>
-        <p>🌐 
-            <a href="https://github.com/anilpirwanii/" target="_blank" style="text-decoration: none; color: #0073e6;">
+    <hr style="border:1px solid var(--color-primary);">
+    <div style="text-align: center; padding: 20px; font-size: 16px; font-family: Arial, sans-serif; background-color: var(--background-secondary); border-radius: 15px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); border: 1px solid var(--color-primary);">
+        <p style="margin: 10px 0;">🌟 Powered by <a href="https://github.com/anilpirwanii/food-classifier-project" target="_blank" style="text-decoration: none; color: var(--color-primary);"><b>Machine Learning-Based Snack Scanner</b></a></p>
+        <p style="margin: 10px 0;">🍴 Created by <b>Anil Kumar</b></p>
+        <p style="margin: 10px 0;">📧 <a href="mailto:aka158@sfu.ca" style="text-decoration: none; color: var(--color-primary);">aka158@sfu.ca</a></p>
+        <p style="margin: 10px 0;">🌐 
+            <a href="https://github.com/anilpirwanii/" target="_blank" style="text-decoration: none; color: var(--color-primary);">
                 <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/github.svg" alt="GitHub" style="width:20px; height:20px; vertical-align: middle;"> GitHub
             </a> 
             &nbsp;|&nbsp; 
-            <a href="https://linkedin.com/in/anilpirwanii/" target="_blank" style="text-decoration: none; color: #0073e6;">
+            <a href="https://linkedin.com/in/anilpirwanii/" target="_blank" style="text-decoration: none; color: var(--color-primary);">
                 <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/linkedin.svg" alt="LinkedIn" style="width:20px; height:20px; vertical-align: middle;"> LinkedIn
             </a>
         </p>
@@ -208,9 +214,6 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
-
-
-
 
 
 
