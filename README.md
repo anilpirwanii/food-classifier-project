@@ -39,29 +39,35 @@ Here are the 15 categories the app currently supports:
 
 ### 1. Clone the Repository
 
+```bash
 git clone https://github.com/anilpirwanii/food-classifier-project.git
 cd food-classifier-project
+```
 
 ### 2. Set up the Environment 
 
 Create a Virtual Environment
-
+```bash
 python -m venv food-env
 source food-env/bin/activate  # On Windows: food-env\Scripts\activate
 Install the Dependencies
-bash
-Copy code
 pip install -r requirements.txt
+```
 
 ### 3. Download the Model and Labels
 Ensure the following files are in the notebooks directory:
 
+```bash
 food_classifier_model.keras
 class_labels.json
+```
+
 ### 4. Run the App
 
+```bash
 streamlit run notebooks/app.py
 The app will start, and you can access it at http://localhost:8501.
+```
 
 ### 🖼️ Example Usage
 Launch the app and upload an image of food.
