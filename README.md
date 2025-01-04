@@ -25,7 +25,7 @@ Here are the 15 categories the app currently supports:
 - 🌭 Hot Dog
 - 🍦 Ice Cream
 - 🍕 Pizza
-- 🍁 Poutine
+- 🍁🍟 Poutine
 - 🍜 Ramen
 - 🥟 Samosa
 - 🥩 Steak
