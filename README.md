@@ -78,22 +78,22 @@ Launch the app and upload an image of food.
 The app will display the predicted category along with an accuracy score.  
 If the app cannot confidently classify the image, it will suggest focusing on a single food item by cropping the image.  
 ### 🔧 Troubleshooting
-Missing Model File: Ensure food_classifier_model.keras is in the correct directory. If not, download it and place it in notebooks/.
-Dependency Issues: Run pip install -r requirements.txt to ensure all dependencies are installed.
-Permission Issues: Ensure you have the necessary permissions for file uploads.
+Missing Model File: Ensure food_classifier_model.keras is in the correct directory. If not, download it and place it in notebooks/.  
+Dependency Issues: Run pip install -r requirements.txt to ensure all dependencies are installed.  
+Permission Issues: Ensure you have the necessary permissions for file uploads.  
 ### 📄 Technology Stack
-Framework: Streamlit
-Backend: TensorFlow with MobileNetV2
-Frontend: Interactive UI with modern design elements
-### 🤝 Contributing
-Contributions are welcome! Feel free to fork this repository and create a pull request for new features or bug fixes.
+Framework: Streamlit  
+Backend: TensorFlow with MobileNetV2  
+Frontend: Interactive UI with modern design elements  
 
 ### 📧 Contact
 If you have questions, feedback, or ideas, feel free to reach out:
 
-📧 Email: aka158@sfu.ca
-🌐 GitHub
-🌐 LinkedIn
-🌟 Demo
+📧 Email: aka158@sfu.ca  
+🌐 GitHub  
+🌐 LinkedIn  
+
+
+🌟 Demo  
 Check out the live app here: Snack Scanner
 
