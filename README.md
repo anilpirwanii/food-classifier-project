@@ -50,7 +50,10 @@ Create a Virtual Environment
 ```bash
 python -m venv food-env
 source food-env/bin/activate  # On Windows: food-env\Scripts\activate
+```
+
 Install the Dependencies
+```bash
 pip install -r requirements.txt
 ```
 
@@ -66,13 +69,14 @@ class_labels.json
 
 ```bash
 streamlit run notebooks/app.py
-The app will start, and you can access it at http://localhost:8501.
 ```
+The app will start, and you can access it at http://localhost:8501.
+
 
 ### 🖼️ Example Usage
-Launch the app and upload an image of food.
-The app will display the predicted category along with an accuracy score.
-If the app cannot confidently classify the image, it will suggest focusing on a single food item by cropping the image.
+Launch the app and upload an image of food.  
+The app will display the predicted category along with an accuracy score.  
+If the app cannot confidently classify the image, it will suggest focusing on a single food item by cropping the image.  
 ### 🔧 Troubleshooting
 Missing Model File: Ensure food_classifier_model.keras is in the correct directory. If not, download it and place it in notebooks/.
 Dependency Issues: Run pip install -r requirements.txt to ensure all dependencies are installed.
