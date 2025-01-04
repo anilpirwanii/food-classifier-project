@@ -95,5 +95,5 @@ If you have questions, feedback, or ideas, feel free to reach out:
 
 
 🌟 Demo  
-Check out the live app here: Snack Scanner
+Check out the live app here: [Snack Scanner](https://food-classifier-project.streamlit.app/)
 
