@@ -84,7 +84,7 @@ Permission Issues: Ensure you have the necessary permissions for file uploads.
 ### 📄 Technology Stack
 Framework: Streamlit  
 Backend: TensorFlow with MobileNetV2  
-Frontend: Interactive UI with modern design elements  
+Frontend: Interactive UI with modern design elements (using Streamlit’s `markdown` and `write` methods)
 
 ### 📧 Contact
 If you have questions, feedback, or ideas, feel free to reach out:
