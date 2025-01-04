@@ -7,18 +7,9 @@ Welcome to the **Snack Scanner**, your ultimate food recognition companion power
 ## 🌐 Access the App Online
 
 You can try the app without any setup by visiting the live link:  
-👉 [Snack Scanner on Streamlit](https://snackscanner.streamlit.app)
+👉 [Snack Scanner on Streamlit](https://food-classifier-project.streamlit.app/)
 
 If you'd like to run the app locally, follow the steps below.
-
----
-
-## 🚀 Features
-
-- 🧠 **AI-Powered Food Recognition**: Leverages a trained deep learning model to classify 15 different food categories.
-- 🎨 **User-Friendly Interface**: Intuitive UI built with Streamlit for a seamless experience.
-- 🌐 **Accessibility**: Available for local deployment and online use.
-- ✨ **Extensible**: Easily extendable for additional food categories or features.
 
 ---
 
@@ -52,7 +43,8 @@ Here are the 15 categories the app currently supports:
 git clone https://github.com/anilpirwanii/food-classifier-project.git
 cd food-classifier-project
 
-2. Set Up the Environment
+### 2. Set up the Environment 
+
 Create a Virtual Environment
 bash
 Copy code
